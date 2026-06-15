@@ -1,0 +1,616 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="Universal Manipulation Exoskeleton (UME): an upper-limb exoskeleton for teleoperation with real-time haptic torque feedback, enabling compliant whole-body policy learning."
+    />
+    <meta name="keywords" content="Robotics, Exoskeleton, Teleoperation, Haptic Feedback, Torque Feedback, Imitation Learning, Whole-body Control, Bimanual Manipulation, Mobile Manipulation" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Universal Manipulation Exoskeleton</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css" />
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css" />
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css" />
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+    <link rel="stylesheet" href="./static/css/index.css" />
+    <link rel="icon" href="./static/images/ant_favicon.png" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+  </head>
+  <body>
+    <section class="hero">
+      <div class="hero-body title-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <div style="margin-bottom: 2.5%">
+                <img src="static/logos/蚂蚁集团标志(英)-正色.png" style="width: 30%; height: auto; margin-right: 10%" />
+                <img src="static/logos/stanford_logo.png" style="width: 30%; height: auto" />
+              </div>
+
+              <h1 class="title is-1 publication-title">
+                <span style="display: block; font-size: 1.4em; color: #0057b7">Universal Manipulation Exoskeleton</span>Learning Compliant Whole-body Policies <br />
+                with Real-time Torque Feedback
+              </h1>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block"> <a href="https://www.litianliang.org/">Litian Liang</a><sup>*, 1</sup>,</span>
+                <span class="author-block"> <a href="https://jxu.ai">James (Jingxi) Xu</a><sup>*, 1, 2</sup>,</span>
+                <span class="author-block"> <a href="https://scholar.google.com/citations?user=UqojAiEAAAAJ&hl=en">Xinda Qi</a><sup>1</sup>, </span>
+                <span class="author-block"> <a href="https://vanoracai.github.io/">Yujun Cai</a><sup>1</sup>, </span>
+                <span class="author-block"> <a href="https://www.linkedin.com/in/houzhuding/">Houzhu Ding</a><sup>1</sup>, </span>
+                <span class="author-block"> <a href="#">Luqi Wang</a><sup>1</sup>, </span>
+                <span class="author-block"> <a href="https://www.linkedin.com/in/zhixin-sun-867335292/">Zhixin Sun</a><sup>1</sup>, </span>
+                <br />
+                <span class="author-block"> <a href="https://www.linkedin.com/in/jyh-herng-chow-5831103/">Jyh-Herng Chow</a><sup>1</sup>, </span>
+                <span class="author-block"> <a href="https://users.ece.northwestern.edu/~mya671/">Ming Yang</a><sup>1</sup>, </span>
+                <span class="author-block"> <a href="https://profiles.stanford.edu/mark-cutkosky">Mark Cutkosky</a><sup>2</sup> </span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block"><sup>1</sup>Ant Group,</span>
+                <span class="author-block"><sup>2</sup>Stanford University</span> <br />
+                <span class="author-block"><sup>*</sup>Equal contribution</span>
+              </div>
+
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <!-- PDF Link. -->
+                  <span class="link-block">
+                    <a href="https://arxiv.org/pdf/2606.14218" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <img src="./static/images/pdf.svg" alt="PDF" />
+                      </span>
+                      <span>Paper</span>
+                    </a>
+                  </span>
+                  <!-- arXiv Link. -->
+                  <span class="link-block">
+                    <a href="https://arxiv.org/abs/2606.14218" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <img src="./static/images/arxiv.svg" alt="arXiv" />
+                      </span>
+                      <span>arXiv</span>
+                    </a>
+                  </span>
+                  <!-- Video Link. -->
+                  <span class="link-block">
+                    <a href="https://youtu.be/1x9Pnb9bv7M?si=n2_0ytXx5yQv7l2F" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <img src="./static/images/youtube.svg" alt="Youtube" />
+                      </span>
+                      <span>Video</span>
+                    </a>
+                  </span>
+                  <!-- Code Link. -->
+                  <span class="link-block">
+                    <a href="#" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code (coming soon)</span>
+                    </a>
+                  </span>
+                  <!-- Dataset Link. -->
+                  <!-- <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <video id="teaser" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/low_res_2k_kbps/unsheathing_no_annotation.mp4" type="video/mp4" />
+          </video>
+          <h2 class="subtitle has-text-centered">Teleoperator unsheathing a metal sword relying purely on real-time haptic torque feedback.</h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-2">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                For robots to work safely in household environments, they need to be compliant and react to torque and force feedback during contact. However, the majority of existing data collection
+                pipelines still lack the ability to capture force and torque data for learning active compliant policies. In this paper, we present
+                <span class="dnerf">Universal Manipulation Exoskeleton</span> (UME), an upper-limb exoskeleton that provides real-time haptic torque feedback while recording whole-arm configurations
+                and joint torque signals for teleoperation. With transparent torque feedback, human operators can even unsheathe kinematically constrained objects while blindfolded. UME is low-cost,
+                lightweight, and portable. Equipped with an embedded IMU, it enables teleoperation for mobile manipulation. With our proposed universal retargeting algorithm, UME can teleoperate a
+                range of robots, including the 7DoF OpenArm, 7DoF Franka, and 6DoF X-ARM. We demonstrate that this combination of capabilities enables learning bimanual, whole-body, and active
+                compliant policies that operate effectively in highly constrained spaces. The learned robust autonomous policies achieve high success rates across a variety of tasks, including
+                long-horizon mobile manipulation, force-mediated box flipping, visually occluded box pushing, and space-constrained tabletop manipulation.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!--/ Abstract. -->
+
+        <!-- Paper video. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-2">Video</h2>
+            <div class="publication-video">
+              <iframe src="https://www.youtube.com/embed/1x9Pnb9bv7M?si=tsnYfNLz4BngsemN" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!--/ Paper video. -->
+      </div>
+    </section>
+
+    <!-- Autonomous policy demos -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-2 has-text-centered">
+          Autonomous Policy Demonstrations <br />
+          <span class="title is-4">All policies are trained <span style="color: red">soley</span> on data collected from UME</span>
+        </h2>
+        <p>
+          We study UME's ability to collect data that enables successful learning of autonomous, compliant, bimanual, and whole-body robot policies. All autonomous policies are demonstrated on our
+          <a href="#visualization-qa">in-house-built dual-arm mobile manipulator</a>.
+        </p>
+        <br />
+
+        <h2 class="title is-3 has-text-centered" style="margin-bottom: 8px">Whole-Body Fridge Drink Retrieval</h2>
+        <h3 class="title is-4 has-text-centered">(Autonomous)</h3>
+
+        <div class="content">
+          <p>
+            <strong><em>Task Definition</em></strong
+            >: The robot initially faces the table and checks whether a drink can is present. If no drink is detected, the robot turns around, opens the fridge door, picks up a drink from the side
+            holder of the door, transports it while using the other gripper to support the bottom of the can, and places it on the table. If the drink is removed afterward, the robot repeats the same
+            procedure, ensuring that a drink can is always available on the table. Note that the can is unopened and full, not empty.
+          </p>
+          <p>
+            <strong><em>Challenges</em></strong
+            >: Whole-body mobile manipulation. Long-horizon.
+          </p>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <div class="columns is-centered">
+              <div class="column content">
+                <h5 class="has-text-centered">Drink retrieval after the existing one is taken away</h5>
+                <video controls playsinline height="100%" preload="metadata">
+                  <source src="./static/videos/low_res_2k_kbps/fridge_normal.mp4#t=0.01" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="columns is-centered">
+              <div class="column content">
+                <h5 class="has-text-centered">Robustness to disturbance</h5>
+                <video controls playsinline height="100%" preload="metadata">
+                  <source src="./static/videos/low_res_2k_kbps/fridge_robust.mp4#t=0.01" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <div class="columns is-centered">
+              <div class="column content">
+                <h5 class="has-text-centered">Comparison with <em>UMI</em></h5>
+                <video controls playsinline height="100%" preload="metadata">
+                  <source src="./static/videos/low_res_2k_kbps/fridge_comparison_umi.mp4#t=0.01" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="columns is-centered">
+              <div class="column content">
+                <h5 class="has-text-centered">Comparison with <em>No-torque</em></h5>
+                <video controls playsinline height="100%" preload="metadata">
+                  <source src="./static/videos/low_res_2k_kbps/fridge_comparison_no_torque.mp4#t=0.01" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="title is-3 has-text-centered" style="margin-bottom: 8px">Space-Constrained GPU Picking</h2>
+        <h3 class="title is-4 has-text-centered">(Autonomous)</h3>
+
+        <div class="content">
+          <p>
+            <strong><em>Task Definition</em></strong
+            >: The robot must reach between two desktops to pick up a GPU card located at the back of the constrained space, and retrieve it to a location outside the enclosure.
+          </p>
+          <p>
+            <strong><em>Challenges</em></strong
+            >: Highly space-constrained. Force-mediated. Requires whole-body movement.
+          </p>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <div class="columns is-centered">
+              <div class="column content">
+                <h5 class="has-text-centered">GPU picking from highly constrained space</h5>
+                <video controls playsinline height="100%" preload="metadata">
+                  <source src="./static/videos/low_res_2k_kbps/gpu.mp4#t=0.01" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="columns is-centered">
+              <div class="column content">
+                <h5 class="has-text-centered">Comparison with <em>UMI</em></h5>
+                <video controls playsinline height="100%" preload="metadata">
+                  <source src="./static/videos/low_res_2k_kbps/gpu_comparison_umi.mp4#t=0.01" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="title is-3 has-text-centered" style="margin-bottom: 8px">Force-Mediated Box Flipping</h2>
+        <h3 class="title is-4 has-text-centered">(Autonomous)</h3>
+
+        <div class="content">
+          <p>
+            <strong><em>Task Definition</em></strong
+            >: Push a box against a vertically fixed surface to flip the box upright.
+          </p>
+          <p>
+            <strong><em>Challenges</em></strong
+            >: Highly force-mediated.
+          </p>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <div class="columns is-centered">
+              <div class="column content">
+                <h5 class="has-text-centered">Force-mediated box flipping</h5>
+                <video controls playsinline height="100%" preload="metadata">
+                  <source src="./static/videos/low_res_2k_kbps/flipping.mp4#t=0.01" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="columns is-centered">
+              <div class="column content">
+                <h5 class="has-text-centered">Comparison with <em>No-torque</em></h5>
+                <video controls playsinline height="100%" preload="metadata">
+                  <source src="./static/videos/low_res_2k_kbps/flipping_comparison_no_torque.mp4#t=0.01" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="title is-3 has-text-centered" style="margin-bottom: 8px">Visually Occluded Box Pushing</h2>
+        <h3 class="title is-4 has-text-centered">(Autonomous)</h3>
+
+        <div class="content">
+          <p>
+            <strong><em>Task Definition</em></strong
+            >: Push a target box into the space between two desktop PCs until it reaches the very end, leaving no gap between the box and any hidden objects behind it. This task is inspired by how
+            humans clean tabletops by shuffling objects all the way against the wall.
+          </p>
+          <p>
+            <strong><em>Challenges</em></strong
+            >: Visually occluded. Highly force-mediated.
+          </p>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <div class="columns is-centered">
+              <div class="column content">
+                <h5 class="has-text-centered">Push the box all the way to the end</h5>
+                <video controls playsinline height="100%" preload="metadata">
+                  <source src="./static/videos/low_res_2k_kbps/pushing.mp4#t=0.01" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="columns is-centered">
+              <div class="column content">
+                <h5 class="has-text-centered">Comparison with <em>UMI</em></h5>
+                <video controls playsinline height="100%" preload="metadata">
+                  <source src="./static/videos/low_res_2k_kbps/pushing_comparison_umi.mp4#t=0.01" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Universal teleoperation -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-2 has-text-centered">Universally Teleoperating Other Arms</h2>
+
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <div class="columns is-centered">
+              <div class="column content">
+                <h5 class="has-text-centered">6DoF X-ARMs</h5>
+                <video controls playsinline height="100%" preload="metadata">
+                  <source src="./static/videos/low_res_2k_kbps/xarm.mp4#t=0.01" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="columns is-centered">
+              <div class="column content">
+                <h5 class="has-text-centered">7DoF Franka Arms in Simulation</h5>
+                <video controls playsinline height="100%" preload="metadata">
+                  <source src="./static/videos/low_res_2k_kbps/franka.mp4#t=0.01" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROM & Gravity -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-2 has-text-centered">Range of Motion (RoM) & Gravity Compensation</h2>
+
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <div class="columns is-centered">
+              <div class="column content">
+                <h5 class="has-text-centered">Range of Motion (RoM)</h5>
+                <video controls playsinline height="100%" preload="metadata">
+                  <source src="./static/videos/low_res_2k_kbps/rom.mp4#t=0.01" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="columns is-centered">
+              <div class="column content">
+                <h5 class="has-text-centered">Gravity Compensation</h5>
+                <video controls playsinline height="100%" preload="metadata">
+                  <source src="./static/videos/low_res_2k_kbps/gravity_compensation.mp4#t=0.01" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Real-time Transparent Torque Feedback -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-2 has-text-centered">Real-time Transparent Torque Feedback</h2>
+
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <div class="columns is-centered">
+              <div class="column content">
+                <h5 class="has-text-centered">Teleoperator Feeling the Torque Feedback When Blindfolded</h5>
+                <video controls playsinline height="100%" preload="metadata">
+                  <source src="./static/videos/low_res_2k_kbps/torque_feedback.mp4#t=0.01" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="columns is-centered">
+              <div class="column content">
+                <h5 class="has-text-centered">Unsheathing a Metal Sword Relying on Torque Feedback</h5>
+                <video controls playsinline height="100%" preload="metadata">
+                  <source src="./static/videos/low_res_2k_kbps/unsheathing.mp4#t=0.01" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-2 has-text-centered">Robot Teleoperation</h2>
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <div class="columns is-centered">
+              <div class="column content">
+                <h5 class="has-text-centered">Dual-arm Teleoperation (1x)</h5>
+                <video controls playsinline height="100%" preload="metadata">
+                  <source src="./static/videos/low_res_2k_kbps/arm_rom_with_robot.mp4#t=0.01" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="columns is-centered">
+              <div class="column content">
+                <h5 class="has-text-centered">Mobile Base Teleoperation (1x)</h5>
+                <video controls playsinline height="100%" preload="metadata">
+                  <source src="./static/videos/low_res_2k_kbps/mobile_base_teleop.mp4#t=0.01" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Data Collection & User Study -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-2 has-text-centered">Data Collection & User Study</h2>
+
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <div class="columns is-centered">
+              <div class="column content">
+                <h5 class="has-text-centered">Collecting Mobile Manipulation Demonstrations</h5>
+                <video controls playsinline height="100%" preload="metadata">
+                  <source src="./static/videos/low_res_2k_kbps/teleoperating_mobile_manipulation.mp4#t=0.01" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="columns is-centered">
+              <div class="column content">
+                <h5 class="has-text-centered">User Study</h5>
+                <video controls playsinline height="100%" preload="metadata">
+                  <source src="./static/videos/low_res_2k_kbps/user_study.mp4#t=0.01" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BibTex -->
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>@article{liang2026universalmanipulationexoskeletonlearning,
+      title={Universal Manipulation Exoskeleton: Learning Compliant Whole-body Policies with Real-time Torque Feedback}, 
+      author={Litian Liang and Jingxi Xu and Xinda Qi and Yujun Cai and Houzhu Ding and Luqi Wang and Zhixin Sun and Jyh-Herng Chow and Ming Yang and Mark Cutkosky},
+      year={2026},
+      eprint={2606.14218},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2606.14218}, 
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- Questions & Answers -->
+
+    <section class="section is-small">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-4 has-text-centered">Questions & Answers</h2>
+
+            <div class="block">
+              <h3 class="title is-6">What is the cost of UME?</h3>
+              <p>The entire UME system costs $1900. A detailed cost breakdown can be found in the <a href="#">paper</a>. TODO: add link.</p>
+            </div>
+
+            <div id="visualization-qa" class="block">
+              <h3 class="title is-6">What is the in-house-built mobile manipulator?</h3>
+              <div class="columns">
+                <div class="column is-half">
+                  <p>
+                    We built a low-cost ($9533) in-house mobile manipulator to evaluate UME's capability for collecting demonstrations to learn autonomous mobile manipulation policies. Our mobile
+                    manipulation platform uses the <a href="https://openarm.dev/">OpenArm</a> 1.0 bimanual system made by <a href="https://shop.wowrobo.com/">WowRobo</a>, featuring high-quality
+                    <a href="https://www.damiaokeji.com/">Damiao Technology</a> actuators (DM-J8009P, DM-J4340P, DM-J4340, DM-J4310) and machined aluminum components, at a total cost of $5200. The
+                    base integrates the <a href="https://hexfellow.com/">Hexfellow</a> PCW-25 powered caster ($900) for improved compliance and precise odometry, while remaining fully holonomic. We
+                    use the <a href="https://www.dji.com/">DJI</a> Power 1000 to supply power to all robot electronics, eliminating the need for a wired wall connection during mobile manipulation. For
+                    vision, we employ <a href="https://jieruiweitong.world.tmall.com/">Jieruiweitong</a> 2K HDR fisheye cameras ($37.5) on the head and wrists, offering wide 210° FoV, low latency, and
+                    strong high-dynamic-range imaging.
+                  </p>
+                </div>
+                <div class="column is-half">
+                  <img src="./static/images/robot_materials.jpg" alt="" />
+                </div>
+              </div>
+            </div>
+
+            <div class="block">
+              <h3 class="title is-6">How many demonstrations did you collect to train the autonomous policies?</h3>
+              <p>
+                Box pushing was trained with 26 demonstrations. Box flipping was trained with 40 demonstrations. GPU picking was trained with 42 demonstrations. Fridge drink retrieval was trained with
+                157 demonstrations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <h2 class="title">Acknowledgement</h2>
+        <p>This work is supported by Ant Group.</p>
+        <p>
+          We would like to thank Hao Li and Tian-Ao (Teo) Ren from the Stanford BDML Lab for insightful discussions on the mechanical design of UME. We are grateful to Yifan Hou, Zhanyi Sun, and
+          Professor Shuran Song from the Stanford REAL Lab for valuable discussions on autonomous robot experimental design and future applications. We are grateful to Mikael Jorda for feedback on the
+          design of the retargeting algorithm.
+        </p>
+        <p>
+          We would also like to thank Xiangpeng Miao from Damiao Technology for actuator suggestions and support, Heng Le from X-ARM for assistance with the robotic arms, and Haoxing Guo from
+          Hexfellow Robotics for support with the power caster module.
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <!-- <div class="content has-text-centered">
+          <a class="icon-link" href="./static/videos/nerfies_paper.pdf">
+            <i class="fas fa-file-pdf"></i>
+          </a>
+          <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+            <i class="fab fa-github"></i>
+          </a>
+        </div> -->
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+              <p>If you have any questions, please contact <a href="https://www.litianliang.org/">Litian Liang</a> or <a href="https://jxu.ai">James (Jingxi) Xu</a>.</p>
+              <p>Website template modified from <a href="https://nerfies.github.io/">NeRFies</a>.</p>
+              <p>This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+              <p>
+                This means you are free to borrow the <a href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website, we just ask that you link back to this page in the footer.
+                Please remember to remove the analytics code included in the header of the website which you do not want on your website.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
